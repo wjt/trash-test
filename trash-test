@@ -1,11 +1,17 @@
 #!/usr/bin/python3
 import os
+import sys
 import tempfile
 
 from gi.repository import GLib, Gio
 
 def main():
-    fd, name = tempfile.mkstemp(dir=GLib.get_home_dir(), prefix='trash-test.')
+    try:
+        tmpdir = sys.argv[1]
+    except IndexError:
+        tmpdir = GLib.get_home_dir()
+
+    fd, name = tempfile.mkstemp(dir=tmpdir, prefix='trash-test.')
     os.write(fd, b'test')
     os.close(fd)
     f = Gio.File.new_for_path(name)
