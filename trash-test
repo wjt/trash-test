@@ -1,0 +1,17 @@
+#!/usr/bin/python3
+import os
+import tempfile
+
+from gi.repository import GLib, Gio
+
+def main():
+    fd, name = tempfile.mkstemp(dir=GLib.get_home_dir(), prefix='trash-test.')
+    os.write(fd, b'test')
+    os.close(fd)
+    f = Gio.File.new_for_path(name)
+    print('Trashing', name)
+    f.trash(None)
+    print('Trashed', name)
+
+if __name__ == '__main__':
+    main()

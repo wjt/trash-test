@@ -1,0 +1,24 @@
+{
+    "app-id": "uk.me.wjt.TrashTest",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.24",
+    "sdk": "org.gnome.Sdk",
+    "command": "/app/trash-test",
+    "modules": [
+        {
+            "name": "trash-test",
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "trash-test",
+                    "dest-filename": "trash-test"
+                }
+            ],
+            "buildsystem": "simple",
+            "build-commands": [
+                "install trash-test /app/trash-test"
+            ]
+        }
+    ]
+}
+
